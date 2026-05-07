@@ -140,3 +140,6 @@ function codonsToProtein(codons){
 
 }
 
+document.getElementById("loadExampleBtn").addEventListener("click", function() {
+    document.getElementById("dnaInput").value = "ATGCGGTAA";
+});
