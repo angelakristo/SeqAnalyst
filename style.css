@@ -1,0 +1,40 @@
+.hidden {
+    display: none;
+}
+
+body {
+    padding: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: sans-serif;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.card h2 {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+}
+
+.sequence {
+    font-family: monospace;
+    word-break: break-all;
+}
+
+.error {
+    color: #c0392b;
+    background: #fdecea;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-top: 10px;
+}
+
+.results {
+    margin-top: 20px;
+}

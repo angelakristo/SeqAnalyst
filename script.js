@@ -25,33 +25,49 @@ const codonTable = {
 };
 
 
+function showError(message) {
+    const el = document.getElementById("errorMessage");
+    el.textContent = message;
+    el.classList.remove("hidden");
+}
+
+function hideError() {
+    const el = document.getElementById("errorMessage");
+    el.textContent = "";
+    el.classList.add("hidden");
+}
+
 function parentFunc() {
 
     let dna = document.getElementById("dnaInput").value;
     dna = dna.trim().toUpperCase();
 
     if (dna === "") {
-        alert("Please enter a DNA sequence");
+        showError("Please enter a DNA sequence");
         return;
     }
 
     let afterTranscription = dnaToRna(dna);
     if (!afterTranscription.ok) {
-        alert(afterTranscription.error);
+        showError(afterTranscription.error);
         return;
     }
-    // console.log(afterTranscription.rna);
+
+    hideError();
 
     let codons = splitCodons(afterTranscription.rna);
-    // console.log(codons);
     let protein = codonsToProtein(codons);
-    // console.log("Protein: " + protein);
 
-    document.getElementById("result").innerText =
-        "DNA sequence: " + dna + "\n" +
-        "RNA sequence: " + afterTranscription.rna + "\n" +
-        "Codons: " + codons + "\n" +
-        "Protein: " + protein;
+    if (codons.length === 0) {
+        document.getElementById("results").classList.add("hidden");
+        return;
+    }
+
+    document.getElementById("dnaResult").textContent = dna;
+    document.getElementById("rnaResult").textContent = afterTranscription.rna;
+    document.getElementById("codonsResult").textContent = codons.join(" ");
+    document.getElementById("proteinResult").textContent = protein;
+    document.getElementById("results").classList.remove("hidden");
 
 }
 
