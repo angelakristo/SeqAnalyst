@@ -36,17 +36,20 @@ function parentFunc() {
     }
 
     let afterTranscription = dnaToRna(dna);
-    if (afterTranscription === "") return;
-    // console.log(afterTranscription);
+    if (!afterTranscription.ok) {
+        alert(afterTranscription.error);
+        return;
+    }
+    // console.log(afterTranscription.rna);
 
-    let codons = splitCodons(afterTranscription);
+    let codons = splitCodons(afterTranscription.rna);
     // console.log(codons);
     let protein = codonsToProtein(codons);
     // console.log("Protein: " + protein);
 
     document.getElementById("result").innerText =
         "DNA sequence: " + dna + "\n" +
-        "RNA sequence: " + afterTranscription + "\n" +
+        "RNA sequence: " + afterTranscription.rna + "\n" +
         "Codons: " + codons + "\n" +
         "Protein: " + protein;
 
@@ -63,13 +66,12 @@ function dnaToRna(dna) {
         else if (dna[i] === "C") rna += "G";
         else if (dna[i] === "G") rna += "C";
         else {
-            alert("Invalid DNA sequence");
-            return "";
+            return { ok: false, error: "Invalid DNA base: " + dna[i] };
         }
 
     }
 
-    return rna;
+    return { ok: true, rna: rna };
 }
 
 
