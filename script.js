@@ -55,17 +55,17 @@ function parentFunc() {
 
     hideError();
 
-    let codons = splitCodons(afterTranscription.rna);
-    let protein = codonsToProtein(codons);
-
-    if (codons.length === 0) {
+    let splitResult = splitCodons(afterTranscription.rna);
+    if (!splitResult.ok) {
+        showError(splitResult.error);
         document.getElementById("results").classList.add("hidden");
         return;
     }
+    let protein = codonsToProtein(splitResult.codons);
 
     document.getElementById("dnaResult").textContent = dna;
     document.getElementById("rnaResult").textContent = afterTranscription.rna;
-    document.getElementById("codonsResult").textContent = codons.join(" ");
+    document.getElementById("codonsResult").textContent = splitResult.codons.join(" ");
     document.getElementById("proteinResult").textContent = protein;
     document.getElementById("results").classList.remove("hidden");
 
@@ -77,10 +77,10 @@ function dnaToRna(dna) {
 
     for (let i = 0; i < dna.length; i++) {
 
-        if (dna[i] === "A") rna += "U";
-        else if (dna[i] === "T") rna += "A";
-        else if (dna[i] === "C") rna += "G";
-        else if (dna[i] === "G") rna += "C";
+        if (dna[i] === "A") rna += "A";
+        else if (dna[i] === "T") rna += "U";
+        else if (dna[i] === "C") rna += "C";
+        else if (dna[i] === "G") rna += "G";
         else {
             return { ok: false, error: "Invalid DNA base: " + dna[i] };
         }
@@ -101,8 +101,7 @@ function splitCodons(rna){
 
     // if(start === -1) return codons;
     if(start === -1){
-        alert("Missing start codon AUG");
-        return codons;
+        return { ok: false, error: "Missing start codon AUG" };
     }
 
     if((rna.length - start) % 3 !== 0){
@@ -121,7 +120,7 @@ function splitCodons(rna){
 
     }
 
-    return codons;
+    return { ok: true, codons: codons };
 }
 
 function codonsToProtein(codons){
