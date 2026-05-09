@@ -135,6 +135,33 @@ button:hover {
     color: var(--muted);
 }
 
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.card-header h2 {
+    margin: 0;
+}
+
+.copy-btn {
+    padding: 3px 10px;
+    font-size: 0.75rem;
+    margin-top: 0;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.copy-btn:hover {
+    background: var(--bg);
+    color: var(--text);
+}
+
 .sequence {
     font-family: monospace;
     font-size: 1rem;

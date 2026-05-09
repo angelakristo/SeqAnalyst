@@ -204,3 +204,20 @@ function calculateBaseDistribution(dna) {
 document.getElementById("loadExampleBtn").addEventListener("click", function() {
     document.getElementById("dnaInput").value = "ATGAAATAG";
 });
+
+document.querySelectorAll(".copy-btn").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+        const targetId = btn.dataset.target;
+        let text;
+        if (targetId === "codonsResult") {
+            text = Array.from(document.querySelectorAll("#codonsResult .codon"))
+                .map(function(el) { return el.textContent; }).join(" ");
+        } else {
+            text = document.getElementById(targetId).textContent;
+        }
+        navigator.clipboard.writeText(text).then(function() {
+            btn.textContent = "Copied!";
+            setTimeout(function() { btn.textContent = "Copy"; }, 1000);
+        });
+    });
+});

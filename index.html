@@ -33,7 +33,10 @@
 
 <div id="results" class="results hidden">
   <div class="card dna-card">
-    <h2>DNA Sequence</h2>
+    <div class="card-header">
+      <h2>DNA Sequence</h2>
+      <button class="copy-btn" data-target="dnaResult">Copy</button>
+    </div>
     <div id="dnaResult" class="sequence"></div>
   </div>
   <div class="card stats-card">
@@ -41,15 +44,24 @@
     <div id="statsResult"></div>
   </div>
   <div class="card rna-card">
-    <h2>RNA Sequence</h2>
+    <div class="card-header">
+      <h2>RNA Sequence</h2>
+      <button class="copy-btn" data-target="rnaResult">Copy</button>
+    </div>
     <div id="rnaResult" class="sequence"></div>
   </div>
   <div class="card codons-card">
-    <h2>Codons</h2>
+    <div class="card-header">
+      <h2>Codons</h2>
+      <button class="copy-btn" data-target="codonsResult">Copy</button>
+    </div>
     <div id="codonsResult" class="sequence"></div>
   </div>
   <div class="card protein-card">
-    <h2>Protein</h2>
+    <div class="card-header">
+      <h2>Protein</h2>
+      <button class="copy-btn" data-target="proteinResult">Copy</button>
+    </div>
     <div id="proteinResult" class="sequence"></div>
   </div>
 </div>
