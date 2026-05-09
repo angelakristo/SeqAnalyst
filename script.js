@@ -86,7 +86,11 @@ function parentFunc() {
     // Stage 2: Codon analysis succeeded — show RNA, Codons, Protein cards
     let protein = codonsToProtein(splitResult.codons);
     document.getElementById("rnaResult").textContent = afterTranscription.rna;
-    document.getElementById("codonsResult").textContent = splitResult.codons.join(" ");
+    const codonsHtml = splitResult.codons.map(codon => {
+        const amino = codonTable[codon] === "STOP" ? "*" : codonTable[codon];
+        return '<div class="codon-box"><div class="codon">' + codon + '</div><div class="amino">' + amino + '</div></div>';
+    }).join("");
+    document.getElementById("codonsResult").innerHTML = codonsHtml;
     document.getElementById("proteinResult").textContent = protein;
     document.querySelector(".rna-card").classList.remove("hidden");
     document.querySelector(".codons-card").classList.remove("hidden");
