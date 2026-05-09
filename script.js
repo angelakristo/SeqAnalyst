@@ -25,6 +25,12 @@ const codonTable = {
 };
 
 
+function colorizeBases(sequence) {
+    return sequence.split("").map(base =>
+        '<span class="base-' + base + '">' + base + '</span>'
+    ).join("");
+}
+
 function showError(message) {
     const el = document.getElementById("errorMessage");
     el.textContent = message;
@@ -68,9 +74,14 @@ function parentFunc() {
     // Stage 1: DNA is valid — show DNA card and Stats card
     const dist = calculateBaseDistribution(dna);
     const gc = calculateGCContent(dna);
-    document.getElementById("dnaResult").textContent = dna;
-    document.getElementById("statsResult").textContent =
-        "GC Content: " + gc + "% | A: " + dist.A + ", T: " + dist.T + ", C: " + dist.C + ", G: " + dist.G;
+    document.getElementById("dnaResult").innerHTML = colorizeBases(dna);
+    document.getElementById("statsResult").innerHTML =
+        '<div class="stat-item"><span class="stat-label">GC%</span><span class="stat-value">' + gc + '%</span></div>' +
+        '<span class="stat-divider">|</span>' +
+        '<div class="stat-item"><span class="stat-label base-A">A</span><span class="stat-value">' + dist.A + '</span></div>' +
+        '<div class="stat-item"><span class="stat-label base-T">T</span><span class="stat-value">' + dist.T + '</span></div>' +
+        '<div class="stat-item"><span class="stat-label base-C">C</span><span class="stat-value">' + dist.C + '</span></div>' +
+        '<div class="stat-item"><span class="stat-label base-G">G</span><span class="stat-value">' + dist.G + '</span></div>';
     document.querySelector(".dna-card").classList.remove("hidden");
     document.querySelector(".stats-card").classList.remove("hidden");
     document.getElementById("results").classList.remove("hidden");
@@ -85,10 +96,10 @@ function parentFunc() {
 
     // Stage 2: Codon analysis succeeded — show RNA, Codons, Protein cards
     let protein = codonsToProtein(splitResult.codons);
-    document.getElementById("rnaResult").textContent = afterTranscription.rna;
+    document.getElementById("rnaResult").innerHTML = colorizeBases(afterTranscription.rna);
     const codonsHtml = splitResult.codons.map(codon => {
         const amino = codonTable[codon] === "STOP" ? "*" : codonTable[codon];
-        return '<div class="codon-box"><div class="codon">' + codon + '</div><div class="amino">' + amino + '</div></div>';
+        return '<div class="codon-box"><div class="codon">' + colorizeBases(codon) + '</div><div class="amino">' + amino + '</div></div>';
     }).join("");
     document.getElementById("codonsResult").innerHTML = codonsHtml;
     document.getElementById("proteinResult").textContent = protein;
