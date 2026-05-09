@@ -42,3 +42,11 @@ body {
 #loadExampleBtn {
     margin-left: 8px;
 }
+
+.strand-selector {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 10px 0;
+    font-size: 0.95rem;
+}

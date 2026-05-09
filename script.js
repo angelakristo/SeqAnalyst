@@ -47,7 +47,9 @@ function parentFunc() {
         return;
     }
 
-    let afterTranscription = dnaToRna(dna);
+    const strandMode = document.querySelector('input[name="strand"]:checked').value;
+
+    let afterTranscription = dnaToRna(dna, strandMode);
     if (!afterTranscription.ok) {
         showError(afterTranscription.error);
         return;
@@ -63,7 +65,12 @@ function parentFunc() {
     }
     let protein = codonsToProtein(splitResult.codons);
 
+    const dist = calculateBaseDistribution(dna);
+    const gc = calculateGCContent(dna);
+
     document.getElementById("dnaResult").textContent = dna;
+    document.getElementById("statsResult").textContent =
+        "GC Content: " + gc + "% | A: " + dist.A + ", T: " + dist.T + ", C: " + dist.C + ", G: " + dist.G;
     document.getElementById("rnaResult").textContent = afterTranscription.rna;
     document.getElementById("codonsResult").textContent = splitResult.codons.join(" ");
     document.getElementById("proteinResult").textContent = protein;
@@ -71,18 +78,24 @@ function parentFunc() {
 
 }
 
-function dnaToRna(dna) {
+function dnaToRna(dna, strandMode) {
 
     let rna = "";
 
     for (let i = 0; i < dna.length; i++) {
 
-        if (dna[i] === "A") rna += "A";
-        else if (dna[i] === "T") rna += "U";
-        else if (dna[i] === "C") rna += "C";
-        else if (dna[i] === "G") rna += "G";
-        else {
-            return { ok: false, error: "Invalid DNA base: " + dna[i] };
+        if (strandMode === "template") {
+            if (dna[i] === "A") rna += "U";
+            else if (dna[i] === "T") rna += "A";
+            else if (dna[i] === "C") rna += "G";
+            else if (dna[i] === "G") rna += "C";
+            else return { ok: false, error: "Invalid DNA base: " + dna[i] };
+        } else {
+            if (dna[i] === "A") rna += "A";
+            else if (dna[i] === "T") rna += "U";
+            else if (dna[i] === "C") rna += "C";
+            else if (dna[i] === "G") rna += "G";
+            else return { ok: false, error: "Invalid DNA base: " + dna[i] };
         }
 
     }
@@ -138,6 +151,22 @@ function codonsToProtein(codons){
 
     return protein;
 
+}
+
+function calculateGCContent(dna) {
+    let gc = 0;
+    for (let i = 0; i < dna.length; i++) {
+        if (dna[i] === "G" || dna[i] === "C") gc++;
+    }
+    return parseFloat((gc / dna.length * 100).toFixed(1));
+}
+
+function calculateBaseDistribution(dna) {
+    let dist = { A: 0, T: 0, C: 0, G: 0 };
+    for (let i = 0; i < dna.length; i++) {
+        dist[dna[i]]++;
+    }
+    return dist;
 }
 
 document.getElementById("loadExampleBtn").addEventListener("click", function() {
