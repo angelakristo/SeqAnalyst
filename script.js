@@ -37,7 +37,17 @@ function hideError() {
     el.classList.add("hidden");
 }
 
+const CARDS = ["dna-card", "stats-card", "rna-card", "codons-card", "protein-card"];
+
+function resetDisplay() {
+    hideError();
+    document.getElementById("results").classList.add("hidden");
+    CARDS.forEach(cls => document.querySelector("." + cls).classList.add("hidden"));
+}
+
 function parentFunc() {
+
+    resetDisplay();
 
     let dna = document.getElementById("dnaInput").value;
     dna = dna.trim().toUpperCase();
@@ -55,26 +65,30 @@ function parentFunc() {
         return;
     }
 
-    hideError();
+    // Stage 1: DNA is valid — show DNA card and Stats card
+    const dist = calculateBaseDistribution(dna);
+    const gc = calculateGCContent(dna);
+    document.getElementById("dnaResult").textContent = dna;
+    document.getElementById("statsResult").textContent =
+        "GC Content: " + gc + "% | A: " + dist.A + ", T: " + dist.T + ", C: " + dist.C + ", G: " + dist.G;
+    document.querySelector(".dna-card").classList.remove("hidden");
+    document.querySelector(".stats-card").classList.remove("hidden");
+    document.getElementById("results").classList.remove("hidden");
 
     let splitResult = splitCodons(afterTranscription.rna);
     if (!splitResult.ok) {
         showError(splitResult.error);
-        document.getElementById("results").classList.add("hidden");
         return;
     }
+
+    // Stage 2: Codon analysis succeeded — show RNA, Codons, Protein cards
     let protein = codonsToProtein(splitResult.codons);
-
-    const dist = calculateBaseDistribution(dna);
-    const gc = calculateGCContent(dna);
-
-    document.getElementById("dnaResult").textContent = dna;
-    document.getElementById("statsResult").textContent =
-        "GC Content: " + gc + "% | A: " + dist.A + ", T: " + dist.T + ", C: " + dist.C + ", G: " + dist.G;
     document.getElementById("rnaResult").textContent = afterTranscription.rna;
     document.getElementById("codonsResult").textContent = splitResult.codons.join(" ");
     document.getElementById("proteinResult").textContent = protein;
-    document.getElementById("results").classList.remove("hidden");
+    document.querySelector(".rna-card").classList.remove("hidden");
+    document.querySelector(".codons-card").classList.remove("hidden");
+    document.querySelector(".protein-card").classList.remove("hidden");
 
 }
 
