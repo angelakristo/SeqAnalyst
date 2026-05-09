@@ -43,7 +43,8 @@ body {
     margin-left: 8px;
 }
 
-.strand-selector {
+.strand-selector,
+.frame-selector {
     display: flex;
     align-items: center;
     gap: 16px;

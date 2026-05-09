@@ -75,7 +75,9 @@ function parentFunc() {
     document.querySelector(".stats-card").classList.remove("hidden");
     document.getElementById("results").classList.remove("hidden");
 
-    let splitResult = splitCodons(afterTranscription.rna);
+    const frame = parseInt(document.querySelector('input[name="frame"]:checked').value);
+
+    let splitResult = splitCodons(afterTranscription.rna, frame);
     if (!splitResult.ok) {
         showError(splitResult.error);
         return;
@@ -118,17 +120,18 @@ function dnaToRna(dna, strandMode) {
 }
 
 
-function splitCodons(rna){
+function splitCodons(rna, frame){
 
     let codons = [];
+    let start;
 
-    // let lowerCaseRna = rna.toLowerCase();
-
-    let start = rna.indexOf("AUG");
-
-    // if(start === -1) return codons;
-    if(start === -1){
-        return { ok: false, error: "Missing start codon AUG" };
+    if (frame === 1) {
+        start = rna.indexOf("AUG");
+        if (start === -1) {
+            return { ok: false, error: "Missing start codon AUG" };
+        }
+    } else {
+        start = frame - 1;
     }
 
     if((rna.length - start) % 3 !== 0){
