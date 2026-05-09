@@ -1,3 +1,5 @@
+import { supabase } from './supabase.js';
+
 // console.log("SeqAnalyst working!");
 
 const codonTable = {
@@ -200,6 +202,8 @@ function calculateBaseDistribution(dna) {
     }
     return dist;
 }
+
+document.getElementById("analyzeBtn").addEventListener("click", parentFunc);
 
 document.getElementById("loadExampleBtn").addEventListener("click", function() {
     document.getElementById("dnaInput").value = "ATGAAATAG";

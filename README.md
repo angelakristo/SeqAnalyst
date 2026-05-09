@@ -76,4 +76,4 @@ Use the **Live Server** extension in VS Code for a better development experience
 
 ## Why I built this
 
-I built SeqAnalyst as my first web development project because I'm interested in biology, programming, and bioinformatics. SeqAnalyst is where those interests meet.
+I built SeqAnalyst as my web development project because I'm interested in biology, programming, and bioinformatics. SeqAnalyst is where those interests meet.
