@@ -170,5 +170,5 @@ function calculateBaseDistribution(dna) {
 }
 
 document.getElementById("loadExampleBtn").addEventListener("click", function() {
-    document.getElementById("dnaInput").value = "ATGCGGTAA";
+    document.getElementById("dnaInput").value = "ATGAAATAG";
 });
