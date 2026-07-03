@@ -1,10 +1,8 @@
 # SeqAnalyst
 
-SeqAnalyst is an educational bioinformatics web application for analyzing DNA sequences.
+**Status:** In active development.
 
-The app helps users understand the basic biological process:
-
-DNA → RNA → Codons → Protein
+SeqAnalyst is a bioinformatics web application for analyzing DNA sequences, designed as an educational tool that walks users through the central dogma of molecular biology: **DNA → RNA → Codons → Protein**.
 
 It is built as a beginner-friendly sequence analysis tool, with plans to grow into a personal bioinformatics notebook.
 
@@ -25,7 +23,7 @@ It is built as a beginner-friendly sequence analysis tool, with plans to grow in
 - Load example sequence
 - Copy-to-clipboard buttons
 
-## How it works
+## How It Works
 
 1. The user enters a DNA sequence.
 2. The app validates the sequence.
@@ -34,16 +32,16 @@ It is built as a beginner-friendly sequence analysis tool, with plans to grow in
 5. Codons are translated into a protein sequence.
 6. The app displays sequence statistics such as GC content and base distribution.
 
-## Strand modes
+## Strand Modes
 
 SeqAnalyst supports two strand modes:
 
-- **Coding strand**: RNA is created by replacing `T` with `U`.
-- **Template strand**: RNA is created using complementary base pairing.
+- **Coding strand:** RNA is created by replacing `T` with `U`.
+- **Template strand:** RNA is created using complementary base pairing.
 
 This helps users understand the difference between coding/sense and template/antisense DNA strands.
 
-## Reading frames
+## Reading Frames
 
 The app supports three reading frames. Frame 1 searches the RNA for the first `AUG` start codon and begins reading codons from there. Frames 2 and 3 skip start codon detection entirely and begin reading at fixed offsets — position 1 and position 2 in the RNA respectively — showing how a shift in starting position produces a completely different set of codons and protein sequence.
 
@@ -51,9 +49,10 @@ The app supports three reading frames. Frame 1 searches the RNA for the first `A
 
 - HTML
 - CSS
-- JavaScript
+- JavaScript (Vanilla, ES Modules)
+- Supabase (in progress)
 
-## How to run locally
+## How to Run Locally
 
 No build step is required.
 
@@ -61,11 +60,9 @@ No build step is required.
 2. Open the project folder.
 3. Open `index.html` in a browser.
 
-Recommended:
+**Recommended:** Use the Live Server extension in VS Code for a better development experience.
 
-Use the **Live Server** extension in VS Code for a better development experience.
-
-## Planned next steps
+## Planned Next Steps
 
 - Add Supabase authentication
 - Save user analyses
@@ -74,6 +71,6 @@ Use the **Live Server** extension in VS Code for a better development experience
 - Add a built-in example sequence library
 - Turn SeqAnalyst into a personal bioinformatics notebook
 
-## Why I built this
+## Why I Built This
 
 I built SeqAnalyst as my web development project because I'm interested in biology, programming, and bioinformatics. SeqAnalyst is where those interests meet.
