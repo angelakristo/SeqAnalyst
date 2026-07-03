@@ -1,7 +1,5 @@
 import { supabase } from './supabase.js';
 
-// console.log("SeqAnalyst working!");
-
 const codonTable = {
 
     "UUU":"F", "UUC":"F", "UUA":"L", "UUG":"L",
@@ -73,7 +71,6 @@ function parentFunc() {
         return;
     }
 
-    // Stage 1: DNA is valid — show DNA card and Stats card
     const dist = calculateBaseDistribution(dna);
     const gc = calculateGCContent(dna);
     document.getElementById("dnaResult").innerHTML = colorizeBases(dna);
@@ -96,7 +93,6 @@ function parentFunc() {
         return;
     }
 
-    // Stage 2: Codon analysis succeeded — show RNA, Codons, Protein cards
     let protein = codonsToProtein(splitResult.codons);
     document.getElementById("rnaResult").innerHTML = colorizeBases(afterTranscription.rna);
     const codonsHtml = splitResult.codons.map(codon => {

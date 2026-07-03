@@ -31,8 +31,6 @@ p {
     margin: 0 0 20px 0;
 }
 
-/* ── Input ─────────────────────────────── */
-
 input[type="text"] {
     width: 100%;
     box-sizing: border-box;
@@ -50,8 +48,6 @@ input[type="text"]:focus {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
-/* ── Selectors ─────────────────────────── */
-
 .strand-selector,
 .frame-selector {
     display: flex;
@@ -68,8 +64,6 @@ input[type="text"]:focus {
     color: var(--text);
     min-width: 110px;
 }
-
-/* ── Buttons ───────────────────────────── */
 
 button {
     padding: 10px 20px;
@@ -99,8 +93,6 @@ button:hover {
     background: #eef2ff;
 }
 
-/* ── Error ─────────────────────────────── */
-
 .error {
     color: #dc2626;
     background: #fef2f2;
@@ -110,8 +102,6 @@ button:hover {
     margin-top: 12px;
     font-size: 0.9rem;
 }
-
-/* ── Cards ─────────────────────────────── */
 
 .results {
     margin-top: 24px;
@@ -169,15 +159,11 @@ button:hover {
     line-height: 1.7;
 }
 
-/* ── Base colors ───────────────────────── */
-
 .base-A { color: #22c55e; }
 .base-T { color: #ef4444; }
 .base-U { color: #ef4444; }
 .base-C { color: #3b82f6; }
 .base-G { color: #f59e0b; }
-
-/* ── Stats card ────────────────────────── */
 
 #statsResult {
     display: flex;
@@ -214,8 +200,6 @@ button:hover {
     line-height: 1;
 }
 
-/* ── Codon boxes ───────────────────────── */
-
 #codonsResult {
     display: flex;
     flex-wrap: wrap;
@@ -243,8 +227,6 @@ button:hover {
     font-weight: 500;
     margin-top: 4px;
 }
-
-/* ── Responsive ────────────────────────── */
 
 @media (max-width: 600px) {
     body {
