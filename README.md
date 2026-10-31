@@ -1,7 +1,5 @@
 # SeqAnalyst
 
-**Status:** In active development.
-
 SeqAnalyst is a bioinformatics web application for analyzing DNA sequences, designed as an educational tool that walks users through the central dogma of molecular biology: **DNA → RNA → Codons → Protein**.
 
 It is built as a beginner-friendly sequence analysis tool, with plans to grow into a personal bioinformatics notebook.
